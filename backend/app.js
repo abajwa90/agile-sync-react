@@ -4,6 +4,7 @@ require("dotenv").config();
 require("./config/db").connect();
 
 const express = require("express");
+const app = express();
 const cors = require("cors");
 
 //CORS config
@@ -28,8 +29,6 @@ const taskRoutes = require("./routes/task-routes");
 
 // getting the port from the environment variables
 const PORT = process.env.PORT ||8000;
-
-const app = express();
 
 // set the limit of the request body size
 app.use(express.json({ limit: "50mb" }));
