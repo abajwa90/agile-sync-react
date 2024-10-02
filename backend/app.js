@@ -7,7 +7,7 @@ const express = require("express");
 const cors = require("cors");
 
 //CORS config
-const allowedOrigins = ['https://agile-sync-react.vercel.app','https://task-manager-server-beryl.vercel.app'];
+const allowedOrigins = ['*'];
 app.use(cors({
   origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
