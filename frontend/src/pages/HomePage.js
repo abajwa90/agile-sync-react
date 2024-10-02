@@ -14,7 +14,9 @@ const HomePage = () => {
   const fetchProjects = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${BACKEND_URL}/projects`);
+      const response = await fetch(`${BACKEND_URL}/api/projects`,{
+        credentials: 'include'
+      });
       if (!response.ok) {
         throw new Error("Something went wrong while fetching the projects");
       }

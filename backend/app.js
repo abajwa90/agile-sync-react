@@ -16,7 +16,7 @@ const PORT = process.env.PORT ||8000;
 const app = express();
 
 //CORS config
-const allowedOrigins = ['https://task-manager-server-beryl.vercel.app'];
+const allowedOrigins = ['https://agile-sync-react.vercel.app','https://task-manager-server-beryl.vercel.app'];
 app.use(cors({
   origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
