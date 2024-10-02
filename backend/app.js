@@ -8,7 +8,7 @@ require("./config/db").connect();
 const app = express();
 
 // CORS config
-const allowedOrigins = ['https://task-manager-client-inky.vercel.app/'];
+const allowedOrigins = ['*'];
 app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
