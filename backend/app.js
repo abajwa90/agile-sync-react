@@ -14,7 +14,23 @@ const taskRoutes = require("./routes/task-routes");
 const PORT = process.env.PORT ||8000;
 
 const app = express();
-app.use(cors());
+
+//CORS config
+const allowedOrigins = ['https://task-manager-server-beryl.vercel.app'];
+app.use(cors({
+  origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
+}));
+
+//Preflight requests for all routes
+app.options('*', cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+}));
 
 // set the limit of the request body size
 app.use(express.json({ limit: "50mb" }));
@@ -35,3 +51,5 @@ app.get("/", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
+
+module.exports = app;
