@@ -19,6 +19,6 @@ router.put("/:id", projectController.updateProject);
 router.delete("/:id", projectController.deleteProject);
 
 //router to get all tasks of a project
-router.get("tasks/:projectId", projectController.getAllTasksByProject);
+router.get("/tasks/:projectId", projectController.getAllTasksByProject);
 
 module.exports = router;

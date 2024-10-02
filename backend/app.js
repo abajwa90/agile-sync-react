@@ -1,51 +1,39 @@
-// requiring the dotenv package
-require("dotenv").config();
-// requiring the database connection
-require("./config/db").connect();
-
 const express = require("express");
-const app = express();
 const cors = require("cors");
 
-//CORS config
-const allowedOrigins = ['*'];
-app.use(cors({
-  origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-    credentials: true
-}));
+// Load environment variables
+require("dotenv").config();
+require("./config/db").connect();
 
-//Preflight requests for all routes
-app.options('*', cors({
+const app = express();
+
+// CORS config
+const allowedOrigins = ['https://task-manager-client-ebon-eight.vercel.app'];
+app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
-// requiring the routes
-const projectRoutes = require("./routes/project-routes");
-const taskRoutes = require("./routes/task-routes");
 
-// getting the port from the environment variables
-const PORT = process.env.PORT ||8000;
-
-// set the limit of the request body size
+// Middleware for parsing JSON
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
 
-// using the routes
+// Routes should come after the CORS middleware
+const projectRoutes = require("./routes/project-routes");
+const taskRoutes = require("./routes/task-routes");
+
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 
-//test route
+// Test route
 app.get("/", (req, res) => {
-  res.send({
-    message: "Server is running",
-  });
+  res.send({ message: "Server is running" });
 });
 
-// starting the server
+// Start server
+const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
 });
