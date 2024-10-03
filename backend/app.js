@@ -11,10 +11,9 @@ const app = express();
 const allowedOrigins = ['*'];  // You may want to limit the origins for better security
 app.use(cors({
   origin: allowedOrigins,
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  methods: ['GET', 'POST'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
-  optionsSuccessStatus: 200 // To avoid issues with older browsers (default is 204)
 }));
 
 // Handle preflight requests for all routes
