@@ -16,13 +16,13 @@ app.use(cors({
   credentials: true,
 }));
 
-// Routes should come after the CORS middleware
-const projectRoutes = require("./routes/project-routes");
-const taskRoutes = require("./routes/task-routes");
-
 // Middleware for parsing JSON
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
+
+// Routes should come after the CORS middleware
+const projectRoutes = require("./routes/project-routes");
+const taskRoutes = require("./routes/task-routes");
 
 //Routes
 app.use("/api/projects", projectRoutes);
