@@ -8,8 +8,17 @@ require("./config/db").connect();
 const app = express();
 
 // CORS config
-const allowedOrigins = ['https://task-manager-client-teal.vercel.app'];
+const allowedOrigins = ['*'];  // You may want to limit the origins for better security
 app.use(cors({
+  origin: allowedOrigins,
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+  optionsSuccessStatus: 200 // To avoid issues with older browsers (default is 204)
+}));
+
+// Handle preflight requests for all routes
+app.options('*', cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization'],
@@ -24,7 +33,7 @@ app.use(express.urlencoded({ limit: "50mb", extended: true }));
 const projectRoutes = require("./routes/project-routes");
 const taskRoutes = require("./routes/task-routes");
 
-//Routes
+// Routes
 app.use("/api/projects", projectRoutes);
 app.use("/api/tasks", taskRoutes);
 
