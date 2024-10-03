@@ -8,7 +8,7 @@ require("./config/db").connect();
 const app = express();
 
 // CORS config
-const allowedOrigins = ['https://agile-sync-react.vercel.app'];
+const allowedOrigins = ['https://task-manager-client-teal.vercel.app'];
 app.use(cors({
   origin: allowedOrigins,
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
