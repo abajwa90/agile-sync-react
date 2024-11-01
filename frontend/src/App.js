@@ -10,20 +10,20 @@ import { Toaster } from "react-hot-toast";
 
 function App() {
   const [projects, setProjects] = useState([]);
-  const [token, setToken] = useState(""); // Ensure token is set properly
 
   useEffect(() => {
     const fetchProjects = async () => {
       const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects`, {
         headers: {
-          Authorization: `Bearer ${token}`, // Authorization header
+          // Removed Authorization header
         },
       });
       const data = await result.json();
       setProjects(data);
     };
-    if (token) fetchProjects(); // Fetch projects only if token is set
-  }, [token]);
+
+    fetchProjects(); // Fetch projects on component mount
+  }, []); // No dependency on token
 
   const addTask = async (event, projectId) => {
     event.preventDefault();
@@ -37,7 +37,7 @@ function App() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`, // Authorization header
+        // Removed Authorization header
       },
       body: JSON.stringify(newTask),
     });
