@@ -8,11 +8,7 @@ const app = express();
 
 // CORS configuration
 const allowedOrigins = ['*'];
-app.use(cors({
-    origin: allowedOrigins,
-    methods: ['GET', 'POST', 'PUT', 'DELETE'],
-    allowedHeaders: ['Content-Type', 'Authorization'],
-}));
+app.use(cors());
 
 app.use((req, res, next) => {
   console.log(`Received ${req.method} request for ${req.url}`);
@@ -20,12 +16,12 @@ app.use((req, res, next) => {
 });
 
 // Preflight requests handling
-app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Temporarily allow all origins for testing
-    res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
-    res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
-    res.sendStatus(204); // No content
-});
+// app.options('*', (req, res) => {
+//     res.header('Access-Control-Allow-Origin', '*'); // Temporarily allow all origins for testing
+//     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+//     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+//     res.sendStatus(204); // No content
+// });
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
