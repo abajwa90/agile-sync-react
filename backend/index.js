@@ -6,26 +6,26 @@ require("dotenv").config();
 
 const app = express();
 
-// CORS configuration for public access (for testing)
+// CORS configuration
+const allowedOrigins = ['https://agile-sync-react.vercel.app']; // Your frontend URL
 app.use(cors({
-    origin: '*', // Temporarily allow all origins for testing
+    origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,
 }));
 
+app.use((req, res, next) => {
+  console.log(`Received ${req.method} request for ${req.url}`);
+  next();
+});
+
 // Preflight requests handling
 app.options('*', (req, res) => {
-    res.header('Access-Control-Allow-Origin', '*'); // Allow all origins for testing
+    res.header('Access-Control-Allow-Origin', '*'); // Temporarily allow all origins for testing
     res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
     res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
     res.sendStatus(204); // No content
-});
-
-// Log incoming requests for debugging
-app.use((req, res, next) => {
-    console.log(`Received ${req.method} request for ${req.url}`);
-    next();
 });
 
 app.use(express.json({ limit: "50mb" }));
