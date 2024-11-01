@@ -8,16 +8,12 @@ const app = express();
 
 // CORS configuration
 app.use(cors({
+  origin: 'https://agile-sync-react-git-master-abajwa90s-projects.vercel.app/', // Replace with your front-end URL
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
   allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'Origin', 'Accept'],
   credentials: true
 }));
 
-// Custom middleware to set Access-Control-Allow-Origin header
-app.use((req, res, next) => {
-  res.header("Access-Control-Allow-Origin", "https://agile-sync-react.vercel.app/"); // Replace with your desired origin
-  next();
-});
 
 app.options('*', cors());
 
