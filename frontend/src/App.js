@@ -14,13 +14,20 @@ function App() {
 
   useEffect(() => {
     const fetchProjects = async () => {
-      const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects`, {
-      });
-      const data = await result.json();
-      setProjects(data);
+      try {
+        const result = await fetch(`${process.env.REACT_APP_BACKEND_URL}/projects`);
+        if (!result.ok) {
+          throw new Error('Network response was not ok'); // Handle errors
+        }
+        const data = await result.json();
+        setProjects(data);
+      } catch (error) {
+        console.error('Error fetching projects:', error);
+      }
     };
-    if (token) fetchProjects(); // Fetch projects only if token is set
-  }, [token]);
+  
+    fetchProjects(); // Fetch projects when component mounts
+  }, []); // Empty dependency array ensures this runs only once on mount
 
   const addTask = async (event, projectId) => {
     event.preventDefault();
