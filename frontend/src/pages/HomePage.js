@@ -4,8 +4,6 @@ import ProjectCard from "../components/Project/ProjectCard";
 import toast from "react-hot-toast";
 
 const BACKEND_URL = process.env.REACT_APP_BACKEND_URL;
-console.log('Backend URL:', BACKEND_URL); // Temporary: Remove after verification
-
 
 const HomePage = () => {
   const [projects, setProjects] = React.useState([]);

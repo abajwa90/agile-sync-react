@@ -47,7 +47,7 @@ const CreateProjectPage = () => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_URL}/projects/create`, {
+      const response = await fetch(`${BACKEND_URL}/api/projects/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

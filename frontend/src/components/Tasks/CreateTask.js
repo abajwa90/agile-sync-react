@@ -52,7 +52,7 @@ const CreateTask = ({ project, onTaskCreate, isOpen, onClose, editTask }) => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_URL}/tasks/create`, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -97,7 +97,7 @@ const CreateTask = ({ project, onTaskCreate, isOpen, onClose, editTask }) => {
     };
 
     try {
-      const response = await fetch(`${BACKEND_URL}/tasks/${editTask._id}`, {
+      const response = await fetch(`${BACKEND_URL}/api/tasks/${editTask._id}`, {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",

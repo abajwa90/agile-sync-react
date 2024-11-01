@@ -19,7 +19,7 @@ const ProjectDetailPage = () => {
   const fetchProject = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`${BACKEND_URL}/projects/${id}`);
+      const response = await fetch(`${BACKEND_URL}/api/projects/${id}`);
       if (!response.ok) {
         throw new Error("Something went wrong while fetching the project");
       }
