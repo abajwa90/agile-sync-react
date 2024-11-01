@@ -6,8 +6,6 @@ require("dotenv").config();
 
 const app = express();
 
-app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
-
 // CORS configuration
 app.use(cors({
   origin: true,              
