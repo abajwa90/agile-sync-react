@@ -1,6 +1,5 @@
 const express = require("express");
 const cors = require("cors");
-const cookieParser = require("cookie-parser");
 
 // Load environment variables and database connection
 require("dotenv").config();
@@ -19,7 +18,6 @@ app.options('*', cors());
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
-app.use(cookieParser());
 
 // Routes
 const projectRoutes = require("./routes/project-routes");
