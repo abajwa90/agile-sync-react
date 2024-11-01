@@ -7,7 +7,7 @@ require("dotenv").config();
 const app = express();
 
 // CORS configuration
-const allowedOrigins = ['https://agile-sync-react.vercel.app']; // Your frontend URL
+const allowedOrigins = ['*'];
 app.use(cors({
     origin: allowedOrigins,
     methods: ['GET', 'POST', 'PUT', 'DELETE'],
