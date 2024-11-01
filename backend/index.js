@@ -6,16 +6,22 @@ require("dotenv").config();
 
 const app = express();
 
-// CORS configuration
+//CORS config
+const allowedOrigins = ['https://agile-sync-react-git-master-abajwa90s-projects.vercel.app']; 
 app.use(cors({
-  origin: 'https://agile-sync-react-git-master-abajwa90s-projects.vercel.app/', // Replace with your front-end URL
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'x-requested-with', 'Origin', 'Accept'],
-  credentials: true
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
 }));
 
-
-app.options('*', cors());
+//Preflight requests for all routes
+app.options('*', cors({
+    origin: allowedOrigins,
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+}));
 
 app.use(express.json({ limit: "50mb" }));
 app.use(express.urlencoded({ limit: "50mb", extended: true }));
