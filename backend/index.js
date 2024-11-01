@@ -4,7 +4,6 @@ const cookieParser = require("cookie-parser");
 
 // Load environment variables and database connection
 require("dotenv").config();
-require("./config/db").connect();
 
 const app = express();
 
